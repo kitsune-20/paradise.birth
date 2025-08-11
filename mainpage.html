@@ -39,12 +39,31 @@
     #playerContainer {
         margin-top: 20px;
         text-align: center;
+        width: 90%;
+        max-width: 800px;
+    }
+
+    /* Адаптивное видео */
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+    }
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        border: none;
     }
 </style>
 </head>
 <body>
 
-<button class="glow-btn" onclick="askQuestion('ты меня любишь?', 'люблю', 'file1.mp4')">
+<button class="glow-btn" onclick="askQuestion('ты меня любишь?', 'люблю', 'youtube')">
     сначала меня!!
 </button>
 
@@ -63,10 +82,22 @@ function askQuestion(question, correctAnswer, fileName) {
     let userAnswer = prompt(question);
     if (userAnswer !== null && userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
         alert("✅ хорошая девочка");
-        document.getElementById("playerContainer").innerHTML = 
-            `<div style="margin-top:10px;">
-                <embed src="./media/${fileName}" width="640" height="480" />
-             </div>`;
+        
+        let content = "";
+        if (fileName === "youtube") {
+            // Вставь свой ID вместо XXXXXXXXXXX
+            content = `
+                <div class="video-wrapper">
+                    <iframe src="https://youtu.be/cHeHwmks7Ys?si=ytsOGQjCCel7VVdr" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>`;
+        } else {
+            content = `<embed src="./media/${fileName}" width="100%" height="480" />`;
+        }
+
+        document.getElementById("playerContainer").innerHTML = content;
     } else {
         alert("❌ немного не такой ответ я ожидала");
     }
