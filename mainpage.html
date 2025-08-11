@@ -64,12 +64,9 @@ function askQuestion(question, correctAnswer, fileName) {
     if (userAnswer !== null && userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
         alert("✅ хорошая девочка");
         document.getElementById("playerContainer").innerHTML = 
-             `<div style="margin-top:10px;">
-        <video width="640" height="480" controls>
-          <source src="./media/${fileName}" type="video/mp4" />
-            Ваш браузер не поддерживает видео.
-        </video>
-     </div>`;
+               `<div style="margin-top:10px;">
+                <embed src="./media/${fileName}" width="640" height="480" />
+             </div>`;
     } else {
         alert("❌ немного не такой ответ я ожидала");
     }
@@ -78,5 +75,6 @@ function askQuestion(question, correctAnswer, fileName) {
 
 </body>
 </html>
+
 
 
