@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>paradise</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('media/back.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        flex-direction: column;
+    }
+
+    .glow-btn {
+        font-size: 20px;
+        padding: 5px 10px;
+        margin: 10px;
+        background-color: #a88faeff;
+        color: #3cfcffff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 0 10px #9000ffff;
+        transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .glow-btn:hover {
+        box-shadow: 0 0 20px #00e1ffff;
+        transform: scale(1.05);
+    }
+
+    #playerContainer {
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<button class="glow-btn" onclick="askQuestion('ты меня любишь?', 'люблю', 'file1.mp4')">
+    сначала меня!!
+</button>
+
+<button class="glow-btn" onclick="askQuestion('сколько нашим отношениям? (ответ в цифрах)', '4', 'file2.jpg')">
+    а потом и меня можешь
+</button>
+
+<button class="glow-btn" onclick="askQuestion('у кого сегодня праздник??', 'у меня', 'file3.mp3')">
+    последнее, но не менее приятное
+</button>
+
+<div id="playerContainer"></div>
+
+<script>
+function askQuestion(question, correctAnswer, fileName) {
+    let userAnswer = prompt(question);
+    if (userAnswer !== null && userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+        alert("✅ хорошая девочка");
+        document.getElementById("playerContainer").innerHTML = 
+            `<div style="margin-top:10px;">
+                <embed src="./media/${fileName}" width="640" height="480" />
+             </div>`;
+    } else {
+        alert("❌ немного не такой ответ я ожидала");
+    }
+}
+</script>
+
+</body>
+</html>

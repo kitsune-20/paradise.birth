@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>доступ</title>
+<style>
+    body {
+        background-image: url('media/back.jpg'); /* сюда вставишь свой файл */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        background: rgba(114, 118, 173, 0.5);
+        padding: 80px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(66, 96, 136, 0.3);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 12px 25px;
+        background-color: #90bcdaff;
+        color: #082437ff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 0 10px #e3c9eeff;
+        transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        box-shadow: 0 0 20px #63d9d9ff;
+        transform: scale(1.05);
+    }
+
+    p#error {
+        margin-bottom: 10px;
+        color: red;
+        min-height: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>аутентификация</h2>
+        <p id="error"></p>
+        <form id="loginForm">
+            <label>как я вас называю? :</label><br>
+            <input type="text" id="login" required><br>
+
+            <label>начало нашей истории? :</label><br>
+            <input type="date" id="password" required><br>
+
+            <button type="submit">ну попробуй</button>
+        </form>
+    </div>
+
+    <script>
+        const correctLogin = "принцесска";
+        const correctPassword = "2021-10-02";
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const login = document.getElementById('login').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+
+            if (login === correctLogin && password === correctPassword) {
+                // переход на страницу с кнопками
+                window.location.href = 'mainpage.html';
+            } else {
+                document.getElementById('error').textContent = "неужели забыла? постарайся снова!";
+            }
+        });
+    </script>
+</body>
+</html>
